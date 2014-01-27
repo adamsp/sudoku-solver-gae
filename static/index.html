@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="author" content="Adam Speakman">
+        <meta name="description" content="Sudoku solver website and API"/>
+        <!-- 
+         The source code for backend for this site is available on Github:
+         https://github.com/adamsp/sudoku-solver-gae
+         This source is licensed under Apache License, Version 2.0
+         http://www.apache.org/licenses/LICENSE-2.0.html
+         -->
+        <title>Sudoku Solver</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>
+			function solve() {
+				var puzzle = '';
+				var tablerows = $("#puzzle_table tr");
+				tablerows.each(function() {
+					$(this).find('td').each(function() {
+						var cell = $(this).find('input')[0];
+						if (cell.value.length == 1) {
+							puzzle += cell.value;
+						} else {
+							puzzle += '0';
+						}
+					})
+				});
+				result = $.get("/solve/" + puzzle, 
+					function(data) {
+						var tablerows = $("#puzzle_table tr");
+						var index = 0;
+						tablerows.each(function() {
+							$(this).find('td').each(function() {
+								var cell = $(this).find('input')[0];
+								var cell_val = data[index];
+								if (cell_val == "0") {
+									cell.value = "";
+								} else {
+									cell.value = cell_val;
+								}
+								index += 1;
+							})
+						});
+					}).error(function (data) {
+						$("#result").html(data.responseText);
+					});
+			}
+		</script>
+    </head>
+    <body>
+        <table id="puzzle_table">
+            <tbody>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                    <td>
+                        <input size="1">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+		<div>
+			<input name="solve" type="submit" value="Solve" onclick="solve();">
+			<input name="hint" type="submit" value="Hint" onclick="hiny();">
+			<input name="reset" type="submit" value="Reset" onclick="reset();">
+		</div>
+		<div id="result"></div>
+    </body>
+</html>

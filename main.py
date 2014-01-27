@@ -20,12 +20,6 @@ limitations under the License.
 
 import webapp2
 from sudokusolver import ValidationException, SudokuSolver
-
-class MainPage(webapp2.RequestHandler):
-
-    def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('Hello, World!')
         
 class Solve(webapp2.RequestHandler):
     
@@ -49,7 +43,6 @@ class Hint(webapp2.RequestHandler):
 
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage),
     ('/solve/(\d+)', Solve),
     ('/hint/(\d+)', Hint)
 ], debug=True)
